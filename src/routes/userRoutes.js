@@ -1,7 +1,7 @@
-const router = require("express").Router();
+const routes = require("express").Router();
 const { create, update, authenticate } = require("../usecases/user");
 
-router.post("/", async (req, res) => {
+routes.post("/", async (req, res) => {
   const { email, password, userName } = req.body;
 
   try {
@@ -13,7 +13,7 @@ router.post("/", async (req, res) => {
   }
 });
 
-router.put("/:id", async (req, res) => {
+routes.put("/:id", async (req, res) => {
   const { id } = req.params;
   const { userName } = req.body;
 
@@ -39,4 +39,4 @@ routes.post("/auth", async (req, res) => {
   }
 });
 
-module.exports = router;
+module.exports = routes;
