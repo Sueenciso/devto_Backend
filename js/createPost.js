@@ -25,7 +25,6 @@ newPostBtn.addEventListener('click',(e)=>{
   }).then((res)=>{
     window.location.replace('./index.html');
     return res.json();//return devuelve el metodo json y ese metodo intenta leer el contenido de la respuesta
-
   }).then((data)=>{
     console.log("recibi estos datos",data);
   }).catch((err)=>{

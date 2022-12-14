@@ -1,5 +1,5 @@
-const user = document.querySelector("#InputEmail");
-const password = document.querySelector("#InputPassword");
+const user = document.querySelector("#inputEmail");
+const password = document.querySelector("#inputPassword");
 const loginButton = document.querySelector("#loginButton");
 
 loginButton.addEventListener("click", (e) => {
@@ -24,10 +24,7 @@ loginButton.addEventListener("click", (e) => {
     .catch((err) => {
       console.error("ocurrio un error", err);
     });
-  console.log("Login ok", dataLogin);
-
-  user.value = "";
-  password.value = "";
+  /* console.log("Login ok", dataLogin); */
 });
 
 /* const data = {
