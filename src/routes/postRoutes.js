@@ -16,4 +16,18 @@ router.post("/", async (req, res) => {
   }
 });
 
+routes.put("/:id", async (req, res) => {
+  const { id } = req.params;
+  const { tittle,tags,content,creationDate } = req.body;
+
+  try {
+    const data = { name, products };
+    const category = await taskUseCases.update(id, data);
+    res.json({ ok: true, payload: category });
+  } catch (error) {
+    const {message}=error;
+    res.status(400).json({ ok: false, message: error });
+  }
+});
+
 module.exports=router;
