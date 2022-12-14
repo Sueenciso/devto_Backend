@@ -12,7 +12,7 @@ app.use(logErrors);
 app.use(errorHandler);
 
 app.get("/", (req, res) => {
-  res.json({ message: "El API ya no funciona" });
+  res.json({ message: "El API ya funciona" });
 });
 
 // Ejecutando el servidor HTTP
