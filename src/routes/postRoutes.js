@@ -8,19 +8,29 @@ const {
   getAllPost,
 } = require("../usecases/post");
 
-routes.get("/", async(req,res)=>{
-  try{
-    const post=await getAllPost();
-    res.json({ok:true, payload:post});
-  }catch(error){
+routes.get("/", async (req, res) => {
+  try {
+    const post = await getAllPost();
+    res.json({ ok: true, payload: post });
+  } catch (error) {
     const { message } = error;
+    res.status(400).json({ ok: false, message: error });
+  }
+});
+
+routes.get("/:id", async (req, res) => {
+  const { id } = req.params;
+  try {
+    const { name, products } = await getPost(id);
+    res.json({ ok: true, payload: { tittle, tags, content, creationDate } });
+  } catch (error) {
     res.status(400).json({ ok: false, message: error });
   }
 });
 
 routes.post("/", async (req, res) => {
   const { tittle, tags, content, user } = req.body;
- 
+
   try {
     const payload = await create(tittle, tags, content, creationDate, user);
     res.json({ ok: true, message: "Post created successfuly", payload });
@@ -45,18 +55,15 @@ routes.put("/:id", async (req, res) => {
 });
 
 routes.delete("/:id", async (req, res) => {
-  
-  try{
+  try {
     const { id } = req.params;
-    const post= await del(id)
+    const post = await del(id);
 
-    res.json({ok:true,payload: post})
-  }catch(error){
-    const {message}=error
-    res.status(400).json({ok:false,message})
+    res.json({ ok: true, payload: post });
+  } catch (error) {
+    const { message } = error;
+    res.status(400).json({ ok: false, message });
   }
 });
-
-
 
 module.exports = routes;

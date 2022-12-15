@@ -2,9 +2,8 @@ const User = require("../../models/user").model;
 const { hashPassword, verifyPassword } = require("../../lib/encrypt");
 const { createToken, verifyToken } = require("../../lib/jwt");
 
-const create = async (data) => {
-  const { email, password, userName } = data;
-  console.log(data);
+const create = async (email, password, userName) => {
+  
   const hash = await hashPassword(password);
 
   const user = new User({ email, password: hash, userName });
