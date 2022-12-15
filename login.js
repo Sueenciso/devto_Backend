@@ -3,13 +3,13 @@ const password = document.querySelector("#inputPassword");
 const loginButton = document.querySelector("#loginButton");
 
 loginButton.addEventListener("click", (e) => {
-
+  e.preventDefault();
   const dataLogin = {
     email: user.value,
     password: password.value,
   };
 
-  fetch("http://localhost:8000/users/auth", {
+  fetch("http://localhost:8001/users/auth", {
     method: "POST",
     headers: { "Content-Type": "applicaction/json" }, //que tipo de paquete vamos a enviar
     body: JSON.stringify(dataLogin),
