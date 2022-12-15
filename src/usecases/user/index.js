@@ -10,7 +10,9 @@ const create = async (email, password, userName) => {
   return await user.save();
 };
 
-const update=async(id,data)=>await User.findByIdAndUpdate(id, data);;
+const update=async(id,data)=>await User.findByIdAndUpdate(id, data);
+
+const findByEmail = async (email) => await User.findOne({ email });
 
 const authenticate = async (email, password) => {
     const user = await findByEmail(email);
@@ -20,6 +22,7 @@ const authenticate = async (email, password) => {
     if (!isVerified) throw new Error("Wrong password");
     return createToken({ sub: user._id });
   };
+
 
   module.exports={
     create,

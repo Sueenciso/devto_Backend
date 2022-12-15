@@ -17,10 +17,10 @@ routes.post("/", async (req, res) => {
 
 routes.put("/:id", async (req, res) => {
   const { id } = req.params;
-  const { userName } = req.body;
+  const { userName, password } = req.body;
 
   try {
-    const data = { userName };
+    const data = { userName, password };
     const user = await update(id, data);
     res.json({ ok: true, payload: user });
   } catch (error) {
@@ -40,6 +40,5 @@ routes.post("/auth", async (req, res) => {
     res.status(401).json({ ok: false, message });
   }
 });
-
 
 module.exports = routes;
