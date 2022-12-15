@@ -21,18 +21,20 @@ routes.get("/", async (req, res) => {
 routes.get("/:id", async (req, res) => {
   const { id } = req.params;
   try {
-    const { name, products } = await getPost(id);
-    res.json({ ok: true, payload: { tittle, tags, content, creationDate } });
+    const { tittle, img, tags, content } = await getPost(id);
+    res.json({ ok: true, payload: { tittle, img, tags, content} });
   } catch (error) {
     res.status(400).json({ ok: false, message: error });
   }
 });
 
-routes.post("/", async (req, res) => {
-  const { tittle, img, tags, content, user } = req.body;
+routes.post("/", authHandler, async (req, res) => {
+  const { tittle, img, tags, content } = req.body;
+  const user=req.params.token.sub;
+ 
 
   try {
-    const payload = await create(tittle, img, tags, content, creationDate, user);
+    const payload = await create(tittle, img, tags, content, user);
     res.json({ ok: true, message: "Post created successfuly", payload });
   } catch (error) {
     const { message } = error;
