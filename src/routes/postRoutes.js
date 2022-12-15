@@ -8,6 +8,16 @@ const {
   getAllPost,
 } = require("../usecases/post");
 
+routes.get("/", async(req,res)=>{
+  try{
+    const post=await getAllPost();
+    res.json({ok:true, payload:post});
+  }catch(error){
+    const { message } = error;
+    res.status(400).json({ ok: false, message: error });
+  }
+});
+
 routes.post("/", async (req, res) => {
   const { tittle, tags, content, user } = req.body;
  
