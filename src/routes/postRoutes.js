@@ -55,15 +55,16 @@ routes.delete("/:id", authHandler, async (req, res) => {
 
 routes.put("/:id", authHandler, async (req, res) => {
   const { id } = req.params;
-  const { tittle, img, tags, content } = data;
-  data = req.body;
+  const { tittle, img, tags, content } = req.body;
 
   try {
-    const post = await update(id, data);
+    const data={tittle, img, tags, content };
+    const post = await update(id, data );
     res.json({ ok: true, payload: post });
   } catch (error) {
     const { message } = error;
     res.status(400).json({ ok: false, message: error });
+    console.log(error);
   }
 });
 
