@@ -3,12 +3,21 @@ const Post = require("../../models/post").model;
 const create = async (tittle, img, tags, content, user) => {
   const date = new Date();
 
-  const newPost = new Post({ tittle, img, tags, content, creationDate:date, user });
+  const newPost = new Post({
+    tittle,
+    img,
+    tags,
+    content,
+    creationDate: date,
+    user,
+  });
   return await newPost.save();
 };
 
-const update = async (id, tittle, tags, content) =>
-  await Post.findByIdAndUpdate(id, { tittle, tags, content }).exec();
+const update = async (id, data) => {
+  const { tittle, tags, content, user } = data;
+  await Post.findByIdAndUpdate(id, { tittle, tags, content, user }).exec();
+};
 
 const del = async (id) => await Post.findByIdAndDelete(id).exec();
 

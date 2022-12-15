@@ -22,7 +22,7 @@ routes.get("/:id", async (req, res) => {
   const { id } = req.params;
   try {
     const { tittle, img, tags, content } = await getPost(id);
-    res.json({ ok: true, payload: { tittle, img, tags, content} });
+    res.json({ ok: true, payload: { tittle, img, tags, content } });
   } catch (error) {
     res.status(400).json({ ok: false, message: error });
   }
@@ -30,8 +30,7 @@ routes.get("/:id", async (req, res) => {
 
 routes.post("/", authHandler, async (req, res) => {
   const { tittle, img, tags, content } = req.body;
-  const user=req.params.token.sub;
- 
+  const user = req.params.token.sub;
 
   try {
     const payload = await create(tittle, img, tags, content, user);
@@ -42,29 +41,29 @@ routes.post("/", authHandler, async (req, res) => {
   }
 });
 
-routes.put("/:id", async (req, res) => {
-  const { id } = req.params;
-  const { tittle, tags, content } = req.body;
-
+routes.delete("/:id", authHandler, async (req, res) => {
   try {
-    const data = { tittle, tags, content };
-    const post = await update(id, data);
-    res.json({ ok: true, payload: post });
-  } catch (error) {
-    const { message } = error;
-    res.status(400).json({ ok: false, message: error });
-  }
-});
-
-routes.delete("/:id", async (req, res) => {
-  try {
-    const { id } = req.params;
+    const { id } = req.params.token.sub;
     const post = await del(id);
 
     res.json({ ok: true, payload: post });
   } catch (error) {
     const { message } = error;
     res.status(400).json({ ok: false, message });
+  }
+});
+
+routes.put("/:id", authHandler, async (req, res) => {
+  const { id } = req.params;
+  const { tittle, img, tags, content } = data;
+  data = req.body;
+
+  try {
+    const post = await update(id, data);
+    res.json({ ok: true, payload: post });
+  } catch (error) {
+    const { message } = error;
+    res.status(400).json({ ok: false, message: error });
   }
 });
 
