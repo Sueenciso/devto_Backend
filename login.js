@@ -22,7 +22,9 @@ loginButton.addEventListener("click", (e) => {
       console.log("recibi estos datos", data);
     })
     .catch((err) => {
-      console.error("ocurrio un error", err);
+      setTimeout(() => {
+        console.error("ocurrio un error", err);
+      }, 10000)
     });
   /* console.log("Login ok", dataLogin); */
 });
