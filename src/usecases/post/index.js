@@ -1,8 +1,9 @@
 const Post = require("../../models/post").model;
 
-const create = async (tittle, tags, content, creationDate, user) => {
+const create = async (tittle, img, tags, content, creationDate, user) => {
   const date = new Date(creationDate);
-  const newPost = new Post({ tittle, tags, date, content, user });
+console.log(date);
+  const newPost = new Post({ tittle, img, tags, date, content, user });
   return await newPost.save();
 };
 

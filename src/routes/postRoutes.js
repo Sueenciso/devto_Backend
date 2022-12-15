@@ -8,11 +8,31 @@ const {
   getAllPost,
 } = require("../usecases/post");
 
-routes.post("/", async (req, res) => {
-  const { tittle, tags, content, user } = req.body;
- 
+routes.get("/", async (req, res) => {
   try {
-    const payload = await create(tittle, tags, content, creationDate, user);
+    const post = await getAllPost();
+    res.json({ ok: true, payload: post });
+  } catch (error) {
+    const { message } = error;
+    res.status(400).json({ ok: false, message: error });
+  }
+});
+
+routes.get("/:id", async (req, res) => {
+  const { id } = req.params;
+  try {
+    const { name, products } = await getPost(id);
+    res.json({ ok: true, payload: { tittle, tags, content, creationDate } });
+  } catch (error) {
+    res.status(400).json({ ok: false, message: error });
+  }
+});
+
+routes.post("/", async (req, res) => {
+  const { tittle, img, tags, content, user } = req.body;
+
+  try {
+    const payload = await create(tittle, img, tags, content, creationDate, user);
     res.json({ ok: true, message: "Post created successfuly", payload });
   } catch (error) {
     const { message } = error;
@@ -34,6 +54,16 @@ routes.put("/:id", async (req, res) => {
   }
 });
 
+routes.delete("/:id", async (req, res) => {
+  try {
+    const { id } = req.params;
+    const post = await del(id);
 
+    res.json({ ok: true, payload: post });
+  } catch (error) {
+    const { message } = error;
+    res.status(400).json({ ok: false, message });
+  }
+});
 
 module.exports = routes;

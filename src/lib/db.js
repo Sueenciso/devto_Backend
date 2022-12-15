@@ -9,7 +9,7 @@ const urldb= `mongodb+srv://${user}:${password}@${host}/devto_DB?retryWrites=tru
 const connect = () => {
   return new Promise((resolve, reject) => {
       mongoose.connect(urldb, (err) => {
-        console.log(urldb);
+        
           if (err) reject(err);
           resolve("Dabase Online");
       });

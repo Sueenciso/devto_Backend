@@ -17,11 +17,11 @@ routes.post("/", async (req, res) => {
 
 routes.put("/:id", async (req, res) => {
   const { id } = req.params;
-  const { userName } = req.body;
+  const { userName, password } = req.body;
 
   try {
-    const data = { userName };
-    const user = await update(id, data);
+    const data = { userName, password };
+    const user = await update(id, password, userName);
     res.json({ ok: true, payload: user });
   } catch (error) {
     const { message } = error;
