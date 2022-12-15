@@ -34,6 +34,19 @@ routes.put("/:id", async (req, res) => {
   }
 });
 
+routes.delete("/:id", async (req, res) => {
+  
+  try{
+    const { id } = req.params;
+    const post= await del(id)
+
+    res.json({ok:true,payload: post})
+  }catch(error){
+    const {message}=error
+    res.status(400).json({ok:false,message})
+  }
+});
+
 
 
 module.exports = routes;

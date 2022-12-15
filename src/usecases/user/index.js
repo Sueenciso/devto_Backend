@@ -4,7 +4,7 @@ const { createToken, verifyToken } = require("../../lib/jwt");
 
 const create = async (data) => {
   const { email, password, userName } = data;
-  
+  console.log(data);
   const hash = await hashPassword(password);
 
   const user = new User({ email, password: hash, userName });
