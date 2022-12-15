@@ -1,4 +1,5 @@
 const routes = require("express").Router();
+const { authHandler } = require("../middlewares/authHandler");
 const {
   create,
   update,
@@ -8,8 +9,8 @@ const {
 } = require("../usecases/post");
 
 routes.post("/", async (req, res) => {
-  const { tittle, tags, content, creationDate, user } = req.body;
-
+  const { tittle, tags, content, user } = req.body;
+ 
   try {
     const payload = await create(tittle, tags, content, creationDate, user);
     res.json({ ok: true, message: "Post created successfuly", payload });
@@ -32,5 +33,7 @@ routes.put("/:id", async (req, res) => {
     res.status(400).json({ ok: false, message: error });
   }
 });
+
+
 
 module.exports = routes;

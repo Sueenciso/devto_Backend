@@ -1,30 +1,19 @@
 const mongoose = require("mongoose");
 //para conectarme a la bd
 const config = require("./config");
+const { user, password,host } = config.db;
+const urldb= `mongodb+srv://${user}:${password}@${host}/devto_DB?retryWrites=true&w=majority`
+
 //Crear una funcion que nos permita conectarnos a la DB
+
 const connect = () => {
   return new Promise((resolve, reject) => {
-    const { user, password,host } = config.db;
-
-    mongoose.connect(
-      `mongodb+srv://${user}:${password}@${host}/?retryWrites=true&w=majority`,
-      
-    );
-
-    mongoose.set("strictQuery",true);
-
-    const db = mongoose.connection;
-
-    
-    db.on("connected",()=>{
-      console.log("conection successful");
-      resolve(mongoose);
-    })
-      db.on("error",(err)=>{
-      console.error("conection failed", err);
-      reject(err);
-    });
-  });
-};
+      mongoose.connect(urldb, (err) => {
+        console.log(urldb);
+          if (err) reject(err);
+          resolve("Dabase Online");
+      });
+  })
+}
 
 module.exports={connect};
