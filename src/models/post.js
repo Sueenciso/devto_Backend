@@ -2,10 +2,11 @@ const mongoose = require("mongoose");
 const { Schema } = mongoose;
 
 const schema = new Schema({
-  tittle: { type: String, require: true, trim: true },
+  tittle: { type: String, required: true, trim: true },
+  img:{type:String},
   tags: [{ type: String }],
-  content: { type: String, require: true },
-  creationDate: { type: Date, require: true },
+  content: { type: String, required: true },
+  creationDate: { type: Date, required: true },
   user: { type: mongoose.ObjectId, ref: "User" },
 });
 

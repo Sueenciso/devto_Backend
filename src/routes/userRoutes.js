@@ -21,7 +21,7 @@ routes.put("/:id", async (req, res) => {
 
   try {
     const data = { userName, password };
-    const user = await update(id, data);
+    const user = await update(id, password, userName);
     res.json({ ok: true, payload: user });
   } catch (error) {
     const { message } = error;
