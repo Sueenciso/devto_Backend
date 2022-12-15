@@ -15,21 +15,20 @@ loginButton.addEventListener("click", (e) => {
     body: JSON.stringify(dataLogin),
   })
     .then((res) => {
-      window.location.replace("./index.html");
+      console.log(res);
+      if (res.status != 200) {
+        throw new Error("a chuchita la bolsearon");
+      }
       return res.json(); //return devuelve el metodo json y ese metodo intenta leer el contenido de la respuesta
     })
     .then((data) => {
       console.log("recibi estos datos", data);
     })
     .catch((err) => {
-      setTimeout(() => {
-        console.error("ocurrio un error", err);
-      }, 10000)
+      console.error("ocurrio un error", err);
     });
   /* console.log("Login ok", dataLogin); */
 });
-
-
 
 /* const data = {
     email: "b.ra@live.com.mx",
