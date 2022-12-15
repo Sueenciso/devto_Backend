@@ -29,10 +29,10 @@ routes.get("/:id", async (req, res) => {
 });
 
 routes.post("/", async (req, res) => {
-  const { tittle, tags, content, user } = req.body;
+  const { tittle, img, tags, content, user } = req.body;
 
   try {
-    const payload = await create(tittle, tags, content, creationDate, user);
+    const payload = await create(tittle, img, tags, content, creationDate, user);
     res.json({ ok: true, message: "Post created successfuly", payload });
   } catch (error) {
     const { message } = error;
