@@ -5,6 +5,7 @@ const apiRouter = require("./src/routes");
 const { logErrors, errorHandler } = require("./src/middlewares/errorHandler");
 const config = require("./src/lib/config");
 const db = require("./src/lib/db");
+const cors = require("cors");
 
 app.use(cors());
 app.use(express.json());
