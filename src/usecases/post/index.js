@@ -15,8 +15,8 @@ const create = async (tittle, img, tags, content, user) => {
 };
 
 const update = async (id, data) => {
-  const { tittle, tags, content, user } = data;
-  await Post.findByIdAndUpdate(id, { tittle, tags, content, user }).exec();
+  const { tittle, img, tags, content, user } = data;
+  await Post.findByIdAndUpdate(id, { tittle, img, tags, content, user }).exec();
 };
 
 const del = async (id) => await Post.findByIdAndDelete(id).exec();
