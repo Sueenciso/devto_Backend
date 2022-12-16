@@ -43,7 +43,7 @@ routes.post("/", authHandler, async (req, res) => {
 
 routes.delete("/:id", authHandler, async (req, res) => {
   try {
-    const { id } = req.params.token.sub;
+    const  {id}  = req.params;
     const post = await del(id);
 
     res.json({ ok: true, payload: post });
