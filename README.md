@@ -8,12 +8,11 @@ Información General
 El proyecto radica en darle funcionalidad a lo que fué en su momento el proyecto de maquetado: permite la creación de nuevos post así como su edición y eliminación, guardando dichos post en una base de datos no relacional.
 
 Tecnologías
-
-
-JavaScript (principal)
-HTML, CSS, SASS, Bootstrap (secundarios... en esta ocasión)
-Criterios de Aceptación
-Para el desafío del módulo de JavaScript se deberá considerar lo siguiente:
+    1. express
+    2. mongoose
+    3. bcrypt
+    4. JWT
+    5. dotenv (opcional)
 
 Para el desafío del módulo de Backend se deberá considerar lo siguiente:
 
